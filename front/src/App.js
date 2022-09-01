@@ -17,6 +17,13 @@ function App() {
     getData();
   }, []);
 
-  return <div className="App">{message}</div>;
+  return (
+    <div className="App">
+      <div className="text-center mt-10 text-4xl font-bold">{message}</div>
+      <div className="text-center mt-5">
+        <button className="btn">바보면 누르세요!</button>
+      </div>
+    </div>
+  );
 }
 export default App;
