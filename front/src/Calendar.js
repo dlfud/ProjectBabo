@@ -1,7 +1,18 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import "./Calendar.css";
 
 const Calendar = () => {
-  return <div>안녕</div>;
+  const [days, setDays] = useState(["일", "월", "화", "수", "목", "금", "토"]);
+
+  return (
+    <div>
+      <div className="row">
+        month
+        <div className="col">{days}</div>
+        day
+      </div>
+    </div>
+  );
 };
 
 export default Calendar;
