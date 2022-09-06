@@ -1,3 +1,5 @@
+@use '_theme.scss';
+
 @mixin size($width: 14px, $height: 14px) {
     width: $width;
     height: $height;

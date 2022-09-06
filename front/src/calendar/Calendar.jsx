@@ -1,137 +1,341 @@
-import { useEffect, useRef } from "react";
-import uuid from "react-uuid";
-import { format, addMonths, startOfWeek, addDays } from "date-fns";
-import { endOfWeek, isSameDay, isSameMonth } from "date-fns";
-import { startOfMonth, endOfMonth } from "date-fns";
-import "../components-schedule.style.scss";
+import React, { useEffect } from "react";
 
-const Calender = () => {
-  const RenderHeader = ({ currentMonth }) => {
-    return (
-        <div className="header row">
-            {currentMonth.toLocaleString("en-US", { month: "long" })}
-        </div>
-    );
-};
-
-const RenderDays = () => {
-    const days = [];
-    const date = ["Sun", "Mon", "Thu", "Wed", "Thrs", "Fri", "Sat"];
-    for (let i = 0; i < 7; i++) {
-        days.push(
-            <div className="col" key={i}>
-                {date[i]}
-            </div>,
-        );
-    }
-    return <div className="days row">{days}</div>;
-};
-
-const RenderCells = ({ currentMonth, selectedDate }) => {
-    const monthStart = startOfMonth(currentMonth);
-    const monthEnd = endOfMonth(monthStart);
-    const startDate = startOfWeek(monthStart);
-    const endDate = endOfWeek(monthEnd);
-
-    const rows = [];
-    let days = [];
-    let day = startDate;
-    let formattedDate = "";
-
-    while (day <= endDate) {
-        for (let i = 0; i < 7; i++) {
-            formattedDate = format(day, "d");
-            days.push(
-                <div
-                    className={`col cell ${
-                        !isSameMonth(day, monthStart)
-                            ? "disabled"
-                            : isSameDay(day, selectedDate)
-                            ? "selected"
-                            : "not-valid"
-                    }`}
-                    key={uuid()}
+export default function IndexPage() {
+  return (
+    <>
+      <div className="flex items-center justify-center py-8 px-4">
+        <div className="2xl:w-1/3 xl:w-1/2 lg:w-3/5 sm:w-4/5 w-full shadow-lg">
+          <div className="md:p-16 md:pb-12 p-5 dark:bg-gray-800 bg-white rounded-t">
+            <div className="px-4 flex items-center justify-between">
+              <h1 className="text-2xl font-bold dark:text-gray-100 text-gray-800">
+                October 2020
+              </h1>
+              <div className="flex items-center text-gray-800 dark:text-gray-100">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-chevron-left"
+                  width={24}
+                  height={24}
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
-                    <span
-                        className={
-                            format(currentMonth, "M") !== format(day, "M")
-                                ? "text not-valid"
-                                : isSameMonth(day, monthStart) &&
-                                  isSameDay(day, selectedDate)
-                                ? "text today"
-                                : ""
-                        }
-                    >
-                        {formattedDate}
-                    </span>
-                </div>,
-            );
-            day = addDays(day, 1);
-        }
-        rows.push(
-            <div className="row" key={uuid()}>
-                {days}
-            </div>,
-        );
-        days = [];
-    }
-    return <div className="body">{rows}</div>;
-};
-
-    const currentDate = new Date();
-    const selectedDate = new Date();
-
-    let currentMonth = new Date(format(currentDate, "yyyy"));
-    let months = [];
-
-    const monthRef = useRef(null);
-
-    for (let i = 0; i < 12; i++) {
-        months.push(
-            <div
-                className="calendar__item"
-                key={uuid()}
-                ref={
-                    format(currentMonth, "MM") === format(selectedDate, "MM")
-                        ? monthRef
-                        : null
-                }
-            >
-                <RenderHeader currentMonth={currentMonth} />
-                <RenderCells
-                    currentMonth={currentMonth}
-                    selectedDate={selectedDate}
-                />
-            </div>,
-        );
-        currentMonth = addMonths(currentMonth, 1);
-    }
-
-    useEffect(() => {
-        if (monthRef.current !== null) {
-            monthRef.current.scrollIntoView({ behavior: "auto" });
-        }
-    }, []);
-
-    function scrollCurrentMonth() {
-        if (monthRef.current !== null) {
-            monthRef.current.scrollIntoView({ behavior: "smooth" });
-        }
-    }
-
-    return (
-        <div className="schedule-calendar">
-            <div className="text-today">
-                <p className="text-current" onClick={scrollCurrentMonth}>
-                    {currentDate.toLocaleString("en-US", { month: "long" })}
-                    {format(currentDate, " dd")}
-                </p>
-                <p className="text-year">{format(currentDate, " yyyy")}</p>
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <polyline points="15 6 9 12 15 18" />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler ml-3 icon-tabler-chevron-right"
+                  width={24}
+                  height={24}
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <polyline points="9 6 15 12 9 18" />
+                </svg>
+              </div>
             </div>
-            <RenderDays />
-            <div className="calendar-list">{months}</div>
+            <div className="flex items-center justify-between pt-12 overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr>
+                    <th>
+                      <div className="w-full flex justify-center">
+                        <p className="text-2xl font-medium text-center text-gray-800 dark:text-gray-100">
+                          Mo
+                        </p>
+                      </div>
+                    </th>
+                    <th>
+                      <div className="w-full flex justify-center">
+                        <p className="text-2xl font-medium text-center text-gray-800 dark:text-gray-100">
+                          Tu
+                        </p>
+                      </div>
+                    </th>
+                    <th>
+                      <div className="w-full flex justify-center">
+                        <p className="text-2xl font-medium text-center text-gray-800 dark:text-gray-100">
+                          We
+                        </p>
+                      </div>
+                    </th>
+                    <th>
+                      <div className="w-full flex justify-center">
+                        <p className="text-2xl font-medium text-center text-gray-800 dark:text-gray-100">
+                          Th
+                        </p>
+                      </div>
+                    </th>
+                    <th>
+                      <div className="w-full flex justify-center">
+                        <p className="text-2xl font-medium text-center text-gray-800 dark:text-gray-100">
+                          Fr
+                        </p>
+                      </div>
+                    </th>
+                    <th>
+                      <div className="w-full flex justify-center">
+                        <p className="text-2xl font-medium text-center text-gray-800 dark:text-gray-100">
+                          Sa
+                        </p>
+                      </div>
+                    </th>
+                    <th>
+                      <div className="w-full flex justify-center">
+                        <p className="text-2xl font-medium text-center text-gray-800 dark:text-gray-100">
+                          Su
+                        </p>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="pt-6">
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center" />
+                    </td>
+                    <td className="pt-6">
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center" />
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center" />
+                    </td>
+                    <td className="pt-6">
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          1
+                        </p>
+                      </div>
+                    </td>
+                    <td className="pt-6">
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          2
+                        </p>
+                      </div>
+                    </td>
+                    <td className="pt-6">
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100">
+                          3
+                        </p>
+                      </div>
+                    </td>
+                    <td className="pt-6">
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100">
+                          4
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          5
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          6
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          7
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="w-full h-full">
+                        <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
+                          <p className="text-2xl w-14 h-14 flex items-center justify-center font-medium text-white bg-indigo-700 rounded-full">
+                            8
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          9
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100">
+                          10
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100">
+                          11
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          12
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          13
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          14
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          15
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          16
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100">
+                          17
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100">
+                          18
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          19
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          20
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          21
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          22
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          23
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100">
+                          24
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100">
+                          25
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          26
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          27
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          28
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          29
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
+                        <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">
+                          30
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-    );
-};
-
-export default Calender;
+      </div>
+    </>
+  );
+}
