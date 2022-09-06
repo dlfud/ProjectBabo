@@ -29,6 +29,11 @@ const Header = () => {
             >
               <li>
                 <div>
+                  <Link to="/todo">Todolist</Link>
+                </div>
+              </li>
+              <li>
+                <div>
                   <Link to="/">Homepage</Link>
                 </div>
               </li>
