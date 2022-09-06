@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Calendar from "./calendar/Calendar";
-import Calender from "./calendar/Calender";
+import Calendar from "./calendar/Calender";
+import Calender from "./calendar/Calendar";
 
 function App() {
   return (
