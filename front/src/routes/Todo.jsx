@@ -21,10 +21,7 @@ const Todo = () => {
   return (
     <Layout>
       <div>
-        123
-        {todos.map((todo, index) => {
-          <TodoList key={index} todo={todo} />;
-        })}
+        <TodoList todos={todos} />
       </div>
     </Layout>
   );
