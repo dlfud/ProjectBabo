@@ -2,7 +2,7 @@
 @use '_theme.scss';
 
 .schedule-calendar {
-    @include common.size(35%, 94%);
+    @include common.size(100%, 94%);
     @include common.flex-column(flex-start, center);
     .text-today {
         @include common.size(80%, fit-content);
