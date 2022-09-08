@@ -101,7 +101,7 @@ const Calender = ({todos}) => {
         }
       >
         <RenderHeader currentMonth={currentMonth} />
-        <RenderCells currentMonth={currentMonth} selectedDate={selectedDate} />
+        <RenderCells currentMonth={currentMonth} selectedDate={selectedDate} content={content}/>
       </div>
     );
     currentMonth = addMonths(currentMonth, 1);
