@@ -5,6 +5,7 @@ import com.example.babo.todo.domain.Todo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -19,6 +20,7 @@ public class TodoService {
     public Todo create(Todo todo) {
         Todo newTodo = new Todo();
         newTodo.setContent(todo.getContent());
+        newTodo.setCreateDate(LocalDateTime.now());
         this.todoRepository.save(newTodo);
         return newTodo;
     }

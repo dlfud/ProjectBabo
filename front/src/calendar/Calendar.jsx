@@ -5,7 +5,9 @@ import { endOfWeek, isSameDay, isSameMonth } from "date-fns";
 import { startOfMonth, endOfMonth } from "date-fns";
 import "../components-schedule.style.scss";
 
-const Calender = () => {
+const Calender = ({todos}) => {
+  const {content} = todos;
+
   const RenderHeader = ({ currentMonth }) => {
     return (
       <div className="header row">
@@ -27,7 +29,7 @@ const Calender = () => {
     return <div className="days row">{days}</div>;
   };
 
-  const RenderCells = ({ currentMonth, selectedDate }) => {
+  const RenderCells = ({ currentMonth, selectedDate, content }) => {
     const monthStart = startOfMonth(currentMonth);
     const monthEnd = endOfMonth(monthStart);
     const startDate = startOfWeek(monthStart);
@@ -62,6 +64,8 @@ const Calender = () => {
               }
             >
               {formattedDate}
+              {content}
+              {/* 여기다~~~~ */}
             </span>
           </div>
         );
