@@ -115,8 +115,12 @@ const Calender = () => {
     }
   }
 
+  const maginTop ={
+    marginTop : "75px"
+  }
+  
   return (
-    <div className="schedule-calendar">
+    <div className="schedule-calendar" style={maginTop}>
       <div className="text-today">
         <p className="text-current" onClick={scrollCurrentMonth}>
           {currentDate.toLocaleString("en-US", { month: "long" })}
