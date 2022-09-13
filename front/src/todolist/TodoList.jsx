@@ -9,20 +9,12 @@ import {
 } from "react-icons/md";
 
 const TodoList = ({ todos }) => {
-  const maginTop = {
-    marginTop: "80px",
-  };
-
-  const height = {
-    height: "900px",
-  };
-
   return (
-    <div className="flex">
-      <div className="w-3/5" style={height}>
+    <div className="fixed">
+      <div className="mx-10">
         <Calendar todos={todos} />
       </div>
-      <div className="w-2/5 mr-10 mt-10" style={maginTop}>
+      <div className="mx-10 mt-10 overscroll-y-auto">
         <table className="table w-full">
           <thead>
             <tr>

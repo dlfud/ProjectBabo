@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css"; // css import
+import "./Calendar.css"; // css import
+import moment from "moment/moment";
 
 const Calender = ({ todos }) => {
   const { content } = todos;
@@ -9,6 +10,9 @@ const Calender = ({ todos }) => {
 
   return (
     <div className="mt-20">
+      {/* <div className="text-gray-500 mt-4">
+        {moment(value).format("YYYY년 MM월 DD일")}
+      </div> */}
       <Calendar onChange={onChange} value={value} />
     </div>
   );
