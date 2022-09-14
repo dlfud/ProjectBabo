@@ -19,7 +19,9 @@ public class TodoController {
     }
 
     @PostMapping("/create")
-    public Todo create(@RequestBody Todo todo){
-        return this.todoService.create(todo);
+    public List<Todo> create(@RequestBody Todo todo){
+        System.out.println("여기 왔음");
+        this.todoService.create(todo);
+        return this.todoService.getList();
     }
 }

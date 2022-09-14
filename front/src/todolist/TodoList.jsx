@@ -1,14 +1,14 @@
-import React from "react";
+import React, {useRef} from "react";
 import Calendar from "../calendar/Calendar";
 import TodoListItem from "./TodoListItem";
+import TodoInput from "./TodoInput";
 import {
-  MdMenu,
-  MdModeEdit,
-  MdPlusOne,
-  MdOutlineDriveFileRenameOutline,
+  MdOutlineAdd
 } from "react-icons/md";
 
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, setTodos }) => {
+  const nextId = useRef(4);
+
   return (
     <div className="fixed">
       <div className="mx-10">
@@ -31,20 +31,16 @@ const TodoList = ({ todos }) => {
             ))}
           </tbody>
         </table>
-        <div className="dropdown dropdown-left dropdown-end float-right">
-          <label tabIndex={0} className="btn m-1">
-            <MdMenu />
+        <div className="float-right">
+          <label htmlFor="my-modal-5" className="btn modal-button">
+            <MdOutlineAdd />
           </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-horizontal dropdown-content menu p-2 shadow bg-base-100 rounded-box"
-          >
-            <li>
-              <a>
-                <MdOutlineDriveFileRenameOutline />
-              </a>
-            </li>
-          </ul>
+        </div>
+      </div>
+      <input type="checkbox" id="my-modal-5" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box w-11/12 max-w-5xl">
+          <TodoInput todos={todos} setTodos={setTodos} nextId={nextId}/>
         </div>
       </div>
     </div>

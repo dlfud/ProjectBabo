@@ -5,7 +5,7 @@ USE babo;
 CREATE TABLE todo(
     id INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     content TEXT NOT NULL,
-    create_date DATETIME NOT NULL DEFAULT NOW()
+    create_date DATETIME NOT NULL
 );
 
 SELECT * FROM todo;
