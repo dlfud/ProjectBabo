@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,6 +31,12 @@ public class TodoController {
     @DeleteMapping("/delete/{id}")
     public List<Todo> delete(@PathVariable("id") Long id, HttpServletResponse httpServletResponse) throws IOException {
         this.todoService.delete(id, httpServletResponse);
+        return todoService.getList();
+    }
+
+    @PatchMapping("/edit/{id}")
+    public List<Todo> editTodo(@PathVariable("id") Long id, @RequestBody Map<String, Object> param, HttpServletResponse httpServletResponse) throws IOException{
+        this.todoService.editTodo(id, param.get("content"), httpServletResponse);
         return todoService.getList();
     }
 }

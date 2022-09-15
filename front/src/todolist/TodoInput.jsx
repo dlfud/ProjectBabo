@@ -29,7 +29,7 @@ const TodoInput = ({ todos, setTodos, nextId, active, setActive }) => {
                     }}
                 />
                 <div className="modal-action">
-                    <button type="submit" htmlFor="my-modal-5" className="btn" onClick={ setActive(false) }>완료</button>
+                    <button type="submit" htmlFor="my-modal-5" className="btn" onClick={() => { setActive(false) }}>완료</button>
                 </div>
             </form>
         </div>

@@ -11,7 +11,9 @@ const TodoListItems = ({ todo, setTodos }) => {
     <tr>
       <td></td>
       <td>{content}</td>
-      <td><MdOutlineEdit /></td>
+      <td>
+        <MdOutlineEdit />
+      </td>
       <td>
         <div onClick={async ()=>{
           const data = await axios({
