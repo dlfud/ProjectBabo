@@ -6,6 +6,7 @@ import TodoList from "../todolist/TodoList";
 const Todo = () => {
   const [todos, setTodos] = useState([]);
   const [active, setActive] = useState(false);
+  const [selectedTodo, setSelectedTodo] = useState({});
 
   useEffect(() => {
     const data = async () => {
@@ -22,7 +23,14 @@ const Todo = () => {
   return (
     <Layout>
       <div>
-        <TodoList todos={todos} setTodos={setTodos} active={active} setActive={setActive}/>
+        <TodoList
+          todos={todos}
+          setTodos={setTodos}
+          active={active}
+          setActive={setActive}
+          selectedTodo={selectedTodo}
+          setSelectedTodo={setSelectedTodo}
+        />
       </div>
     </Layout>
   );

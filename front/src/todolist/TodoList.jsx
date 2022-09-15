@@ -1,14 +1,21 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Calendar from "../calendar/Calendar";
 import TodoListItem from "./TodoListItem";
 import TodoInput from "./TodoInput";
 import "./TodoList.css";
-import {
-  MdOutlineAdd
-} from "react-icons/md";
+import { MdOutlineAdd } from "react-icons/md";
+import axios from "axios";
 
-const TodoList = ({ todos, setTodos, active, setActive }) => {
+const TodoList = ({
+  todos,
+  setTodos,
+  active,
+  setActive,
+  selectedTodo,
+  setSeletedTodo,
+}) => {
   const nextId = useRef(4);
+  const [content, setContent] = useState("");
 
   return (
     <div className="fixed">
@@ -19,7 +26,6 @@ const TodoList = ({ todos, setTodos, active, setActive }) => {
       <div className="mx-10 mt-10 overscroll-y-auto">
         <div className="todoListHieght overflow-auto">
           <table className="table w-full">
-
             <thead>
               <tr>
                 <th></th>
@@ -30,25 +36,67 @@ const TodoList = ({ todos, setTodos, active, setActive }) => {
               </tr>
             </thead>
 
-            <tbody >
+            <tbody>
               {todos.map((todo, index) => (
-                <TodoListItem key={index} todo={todo} setTodos={setTodos} />
+                <TodoListItem
+                  key={index}
+                  todo={todo}
+                  setTodos={setTodos}
+                  active={active}
+                  setActive={setActive}
+                  selectedTodo={selectedTodo}
+                  setSeletedTodo={setSeletedTodo}
+                  setContent={setContent}
+                />
               ))}
             </tbody>
-
           </table>
-        </div>
-
-        <div className="float-right">
-          <label htmlFor="my-modal-5" className="btn modal-button">
-            <MdOutlineAdd />
-          </label>
-        </div>
-      </div>
-      <input type="checkbox" id="my-modal-5" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box w-11/12 max-w-5xl">
-          <TodoInput todos={todos} setTodos={setTodos} nextId={nextId} active={active} setActive={setActive} />
+          <div>
+            <input
+              type="checkbox"
+              id="my-modal-5"
+              className="modal-toggle"
+              checked={active}
+              onChange={() => {}}
+            />
+            <div className="modal">
+              <div className="modal-box w-11/12 max-w-5xl">
+                <div
+                  className="flex justify-center items-center w-7 p-1 ml-auto cursor-pointer"
+                  onClick={() => {
+                    setActive(false);
+                  }}
+                >
+                  ✕
+                </div>
+                <div>
+                  <form
+                    onSubmit={async (e) => {
+                      e.preventDefault();
+                      const data = await axios({
+                        url: `http://localhost:8085/todo/edit/${selectedTodo.id}`,
+                        method: "PATCH",
+                        data: { content },
+                      });
+                      setTodos(data.data);
+                      setContent("");
+                      setActive(false);
+                    }}
+                  >
+                    <input
+                      type="text"
+                      placeholder="수정할 내용을 입력해주세요"
+                      className="border rounded-md border-gray-500 w-full"
+                      value={content}
+                      onChange={(e) => {
+                        setContent(e.target.value);
+                      }}
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
