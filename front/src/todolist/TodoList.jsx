@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import Calendar from "../calendar/Calendar";
 import TodoListItem from "./TodoListItem";
 import TodoInput from "./TodoInput";
@@ -6,7 +6,7 @@ import {
   MdOutlineAdd
 } from "react-icons/md";
 
-const TodoList = ({ todos, setTodos }) => {
+const TodoList = ({ todos, setTodos, active, setActive }) => {
   const nextId = useRef(4);
 
   return (
@@ -27,7 +27,7 @@ const TodoList = ({ todos, setTodos }) => {
           </thead>
           <tbody>
             {todos.map((todo, index) => (
-              <TodoListItem key={index} todo={todo} />
+              <TodoListItem key={index} todo={todo} setTodos={setTodos}/>
             ))}
           </tbody>
         </table>
@@ -37,10 +37,10 @@ const TodoList = ({ todos, setTodos }) => {
           </label>
         </div>
       </div>
-      <input type="checkbox" id="my-modal-5" className="modal-toggle" />
+      <input type="checkbox" id="my-modal-5" className="modal-toggle" checked={active} />
       <div className="modal">
         <div className="modal-box w-11/12 max-w-5xl">
-          <TodoInput todos={todos} setTodos={setTodos} nextId={nextId}/>
+          <TodoInput todos={todos} setTodos={setTodos} nextId={nextId} active={active} setActive={setActive} />
         </div>
       </div>
     </div>

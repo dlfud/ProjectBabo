@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const TodoInput = ({ todos, setTodos, nextId }) => {
+const TodoInput = ({ todos, setTodos, nextId, active, setActive }) => {
     const [content, setContent] = useState("");
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -29,7 +29,7 @@ const TodoInput = ({ todos, setTodos, nextId }) => {
                     }}
                 />
                 <div className="modal-action">
-                    <button type="submit" htmlFor="my-modal-5" className="btn">완료</button>
+                    <button type="submit" htmlFor="my-modal-5" className="btn" onClick={ setActive(false) }>완료</button>
                 </div>
             </form>
         </div>

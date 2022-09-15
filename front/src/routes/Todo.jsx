@@ -22,7 +22,7 @@ const Todo = () => {
   return (
     <Layout>
       <div>
-        <TodoList todos={todos} setTodos={setTodos}/>
+        <TodoList todos={todos} setTodos={setTodos} active={active} setActive={setActive}/>
       </div>
     </Layout>
   );
