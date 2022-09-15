@@ -11,14 +11,24 @@ const TodoListItems = ({ todo, setTodos }) => {
     <tr>
       <td></td>
       <td>{content}</td>
-      <td>
-        <MdOutlineEdit />
+      <td className="edit">
+        <label
+          htmlFor="my-modal-5"
+          className="modal-button cursor-pointer"
+          // onClick={() => {
+          //   setSelectedTodo(todo);
+          //   setContent(content);
+          //   setActive(true);
+          // }}
+        >
+          <MdOutlineEdit />
+        </label>
       </td>
-      <td>
-        <div onClick={async ()=>{
+      <td className="remove">
+        <div onClick={async () => {
           const data = await axios({
             url: `http://localhost:8085/todo/delete/${id}`,
-            method:"DELETE"
+            method: "DELETE"
           });
           setTodos(data.data);
         }}>
