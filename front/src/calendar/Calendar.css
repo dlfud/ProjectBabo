@@ -1,5 +1,5 @@
 .react-calendar {
-  height:720px;
+  height:100%;
   width: 100%;
   max-width: 100%;
   background: #fff;
@@ -70,9 +70,18 @@
   font-size: 0.75em;
   font-weight: bold;
 }
+/* 날짜 나오는 부분 */
+.react-calendar__month-view__days{
+  text-decoration: overline;
+  height:720px;
+  display: flex; 
+  flex-wrap: wrap;
+}
+/* 주말 색 */
 .react-calendar__month-view__days__day--weekend {
   color: #d10000;
 }
+/* 평일 색 */
 .react-calendar__month-view__days__day--neighboringMonth {
   color: #757575;
 }
@@ -82,6 +91,7 @@
   padding: 2em 0.5em;
 }
 .react-calendar__tile {
+  border: 1px solid #a0a096;
   max-width: 100%;
   padding: 10px 6.6667px;
   background: none;
@@ -91,6 +101,7 @@
 .react-calendar__tile:disabled {
   background-color: #f0f0f0;
 }
+/* 날짜에 커서 올렸을 때 */
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {
   background: #f8f8fa;
