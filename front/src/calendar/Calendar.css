@@ -72,7 +72,6 @@
 }
 /* 날짜 나오는 부분 */
 .react-calendar__month-view__days{
-  text-decoration: overline;
   height:720px;
   display: flex; 
   flex-wrap: wrap;
@@ -89,6 +88,11 @@
 .react-calendar__decade-view .react-calendar__tile,
 .react-calendar__century-view .react-calendar__tile {
   padding: 2em 0.5em;
+}
+/* 날짜 위치 변경하려구 */
+.react-calendar__month-view__days__day > abbr{
+  
+  border: 1px solid #a0a096; 
 }
 .react-calendar__tile {
   border: 1px solid #a0a096;
