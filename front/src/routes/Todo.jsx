@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Layout from "../layouts/Layout";
-import TodoList from "../todolist/TodoList";
+// import TodoList from "../todolist/TodoList";
+import Calendar from "../calendar/Calendar";
 
 const Todo = () => {
   const [todos, setTodos] = useState([]);
@@ -22,15 +23,21 @@ const Todo = () => {
 
   return (
     <Layout>
-      <div>
-        <TodoList
-          todos={todos}
-          setTodos={setTodos}
-          active={active}
-          setActive={setActive}
-          selectedTodo={selectedTodo}
-          setSelectedTodo={setSelectedTodo}
-        />
+      <div className="fixed">
+        <div className="mx-10">
+          <Calendar todos={todos} />
+        </div>
+        {/* 
+        <div>
+          <TodoList
+            todos={todos}
+            setTodos={setTodos}
+            active={active}
+            setActive={setActive}
+            selectedTodo={selectedTodo}
+            setSelectedTodo={setSelectedTodo}
+          />
+        </div> */}
       </div>
     </Layout>
   );

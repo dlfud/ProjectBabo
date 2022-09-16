@@ -7,5 +7,3 @@ CREATE TABLE todo(
     content TEXT NOT NULL,
     create_date DATETIME NOT NULL
 );
-
-SELECT * FROM todo;
