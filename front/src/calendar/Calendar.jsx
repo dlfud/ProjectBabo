@@ -9,7 +9,7 @@ const Calender = ({ todos }) => {
   const [value, onChange] = useState(new Date());
 
   return (
-    <div className="mt-20">
+    <div className="my-4">
       {/* <div className="text-gray-500 mt-4">
         {moment(value).format("YYYY년 MM월 DD일")}
       </div> */}

@@ -23,7 +23,7 @@ const Todo = () => {
 
   return (
     <Layout>
-      <div className="fixed">
+      <div>
         <div className="mx-10">
           <Calendar todos={todos} />
         </div>
