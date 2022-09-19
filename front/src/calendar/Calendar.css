@@ -191,3 +191,15 @@
   background: #50bcdf33;
   color: white;
  }
+
+
+
+
+ .dot {
+  height: 8px;
+  width: 8px;
+  background-color: #f87171;
+  border-radius: 50%;
+  display: flex;
+  margin-left: 1px;
+}
