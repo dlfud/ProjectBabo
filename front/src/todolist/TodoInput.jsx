@@ -18,7 +18,7 @@ const TodoInput = () => {
           취소
         </a>
         <a href="#" className="btn">
-          Yay!
+          완료
         </a>
       </div>
     </div>
