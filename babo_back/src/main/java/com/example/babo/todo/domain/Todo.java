@@ -3,6 +3,7 @@ package com.example.babo.todo.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -15,5 +16,5 @@ public class Todo {
     @Column(length = 200)
     private String content;
 
-    private LocalDateTime createDate;
+    private LocalDate createDate;
 }

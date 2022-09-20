@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +26,8 @@ public class TodoService {
     public Todo create(Todo todo) {
         Todo newTodo = new Todo();
         newTodo.setContent(todo.getContent());
-        newTodo.setCreateDate(LocalDateTime.now());
+        newTodo.setCreateDate(todo.getCreateDate());
+//        newTodo.setCreateDate(LocalDate.now());
         this.todoRepository.save(newTodo);
         return newTodo;
     }

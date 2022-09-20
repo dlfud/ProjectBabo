@@ -6,9 +6,9 @@ import moment from "moment/moment";
 
 const Calender = ({ todos }) => {
   const [value, onChange] = useState(new Date());
-  // const [mark, setMark] = useState({ todos });
-  // console.log(todos[0]);
-  const [mark, setMark] = useState(["24-09-2022", "26-09-2022"]);
+  const mark = todos.map((x)=>{
+    return x.createDate;
+  })
 
   return (
     <div className="my-4">
@@ -27,12 +27,12 @@ const Calender = ({ todos }) => {
           let html = [];
           // 현재 날짜가 post 작성한 날짜 배열(mark)에 있다면, dot div 추가
           if (mark.find((x) => x === moment(date).format("YYYY-MM-DD"))) {
-            html.push(<div className="dot"></div>);
+            html.push(<div className="dot"><div className="content">{mark.content}</div></div>);
           }
           // 다른 조건을 주어서 html.push 에 추가적인 html 태그를 적용할 수 있음.
           return (
             <>
-              <div className="flex justify-center items-center absoluteDiv">
+              <div className="flex absoluteDiv">
                 {html}
               </div>
             </>

@@ -97,6 +97,11 @@
   display: flex; 
   flex-wrap: wrap;
 }
+
+.react-calendar__month-view__days__day{
+
+}
+
 /* 주말 색 */
 .react-calendar__month-view__days__day--weekend {
   color: #d10000;
@@ -118,14 +123,16 @@
 /* 날짜 위치 변경하려구 */
 .react-calendar__month-view__days__day > abbr{
   /* float: left; */
-  border: 1px solid #a0a096; 
+  /* border: 1px solid #a0a096;  */
 }
 .react-calendar__tile {
   border: 1px solid #a0a096;
   max-width: 100%;
-  padding: 10px 6.6667px;
+  padding: 6.6667px;
+  padding-bottom: 115px;
   background: none;
-  text-align:start;
+  
+  text-align:center;
   line-height: 16px;
 }
 .react-calendar__tile:disabled {
@@ -202,4 +209,9 @@
   border-radius: 50%;
   display: flex;
   margin-left: 1px;
+  /* display: block; */
+}
+
+.content{
+  display: block;
 }
