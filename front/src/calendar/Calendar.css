@@ -203,15 +203,16 @@
 
 
  .dot {
-  height: 8px;
-  width: 8px;
+  height: 17px;
+  width: 75px;
+  padding-top: 2px;
   background-color: #f87171;
-  border-radius: 50%;
-  display: flex;
-  margin-left: 1px;
-  /* display: block; */
+  border-radius: 15%;
+  /* display: flex; */
+  
 }
 
 .content{
+  overflow: hidden; 
   display: block;
 }
